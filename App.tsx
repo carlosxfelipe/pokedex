@@ -1,16 +1,7 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Search } from "./src/screens/Search/Search";
+import { SearchRoutes } from "./src/screens/Search/SearchRoutes";
 
 import HomeIcon from "./src/assets/images/home.svg";
 import SearchIcon from "./src/assets/images/search.svg";
@@ -23,11 +14,12 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator initialRouteName="Home">
         <Tab.Screen
-          name="Início"
-          component={Search}
+          name="Home"
+          component={SearchRoutes}
           options={{
+            title: "Início",
             headerShown: false,
             tabBarStyle: { backgroundColor: theme.brand.blue },
             tabBarLabelStyle: { color: theme.white },
@@ -37,7 +29,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Buscar"
-          component={Search}
+          component={SearchRoutes}
           options={{
             tabBarStyle: { backgroundColor: theme.brand.blue },
             tabBarLabelStyle: { color: theme.white },
@@ -47,7 +39,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Favoritos"
-          component={Search}
+          component={SearchRoutes}
           options={{
             tabBarStyle: { backgroundColor: theme.brand.blue },
             tabBarLabelStyle: { color: theme.white },
@@ -57,7 +49,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Ajuste"
-          component={Search}
+          component={SearchRoutes}
           options={{
             tabBarStyle: { backgroundColor: theme.brand.blue },
             tabBarLabelStyle: { color: theme.white },
@@ -65,7 +57,6 @@ export default function App() {
             tabBarIcon: () => <SettingsIcon />,
           }}
         />
-        {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, Text, TextInput, View } from "react-native";
-import { api } from "../../api/api";
-import PokeCard from "../../components/Pokecard/Pokecard";
 
+import {
+  Container,
+  SearchContent,
+  SearchText,
+  RecentSearchesText,
+} from "./styles";
+
+import { api } from "../../api/api";
+
+import PokeCard from "../../components/Pokecard/Pokecard";
 import UserImage from "../../assets/images/user.png";
 import { SearchInput } from "../../components/SearchInput/SearchInput";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,7 +20,9 @@ import {
   saveOnStorage,
 } from "../../settings/storage";
 
-export const Search: React.FC = () => {
+const MAX_RECENT_SEARCHES = 6;
+
+export const Search: React.FC = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [pokemon, setPokemon] = useState([]);
 
@@ -27,8 +37,15 @@ export const Search: React.FC = () => {
         setPokemon([data]);
         saveOnStorage([data]);
       } else {
-        setPokemon([...pokemon, data]);
-        saveOnStorage([...pokemon, data]);
+        if (pokemon.length === MAX_RECENT_SEARCHES) {
+          pokemon.shift();
+          const newArray = [...pokemon, data];
+          setPokemon(newArray);
+          saveOnStorage(newArray);
+        } else {
+          setPokemon([...pokemon, data]);
+          saveOnStorage([...pokemon, data]);
+        }
       }
     }
   };
@@ -45,29 +62,18 @@ export const Search: React.FC = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white", padding: 16 }}>
+    <Container>
       <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1 }}>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ fontSize: 32, fontWeight: "700", marginBottom: 16 }}>
-            Buscar
-          </Text>
+        <SearchContent>
+          <SearchText>Buscar</SearchText>
           <Image source={UserImage} />
-        </View>
+        </SearchContent>
         <SearchInput
           value={search}
           onChangeText={(text) => setSearch(text)}
           onPress={getPokemon}
         />
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "600",
-            marginTop: 21,
-            marginBottom: 33,
-          }}
-        >
-          Buscas recentes
-        </Text>
+        <RecentSearchesText>Buscas recentes</RecentSearchesText>
         <FlatList
           showsVerticalScrollIndicator={false}
           columnWrapperStyle={{ justifyContent: "space-between" }}
@@ -79,11 +85,16 @@ export const Search: React.FC = () => {
               image={item.sprites.other["official-artwork"]["front_default"]}
               name={item.name}
               types={item.types}
+              onPress={() =>
+                navigation.navigate("Details", {
+                  pokemon: item,
+                })
+              }
             />
           )}
           style={{ flex: 1 }}
         />
       </SafeAreaView>
-    </View>
+    </Container>
   );
 };
