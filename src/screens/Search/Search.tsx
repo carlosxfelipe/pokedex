@@ -54,7 +54,7 @@ export const Search: React.FC = ({ navigation }) => {
     // clearStorage();
     const loadPokemons = async () => {
       const pokemons = await getDataFromStorage();
-      console.log("mis pokemons => ", pokemons);
+      console.log("meus pokemons => ", pokemons);
       setPokemon(pokemons);
     };
 

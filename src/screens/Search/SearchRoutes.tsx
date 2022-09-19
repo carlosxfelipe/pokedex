@@ -21,7 +21,7 @@ export const SearchRoutes: React.FC = () => {
       <Stack.Screen
         // options={({ route }) => ({ title: route.params.data })}
         options={({ route }) => ({
-          headerBackTitle: "Pokedéx",
+          headerBackTitle: "Pokédex",
           title: `ID: ${route.params.pokemon.id}`,
           headerRight: () => <Star />,
           headerTintColor: theme.white,

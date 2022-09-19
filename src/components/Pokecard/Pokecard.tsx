@@ -1,6 +1,7 @@
 import React from "react";
-
 import { Image, Pressable, Text, View, ViewProps } from "react-native";
+
+// import {} from "./styles";
 
 import { capitalizeFirstLetter } from "../../helpers/utils";
 import { theme } from "../../theme";
