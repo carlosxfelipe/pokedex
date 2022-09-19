@@ -16,7 +16,10 @@ export const Details: React.FC = ({ route }) => {
   const { pokemon } = route.params;
   console.log("details => ", pokemon);
   return (
-    <Container contentContainerStyle={{ backgroundColor: "white" }}>
+    <Container
+      contentContainerStyle={{ backgroundColor: "white" }}
+      showsVerticalScrollIndicator={false}
+    >
       <View>
         <Background
           width={width}

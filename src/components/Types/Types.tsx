@@ -3,35 +3,67 @@ import { View, Text } from "react-native";
 
 // import { Container } from './styles';
 
+import { capitalizeFirstLetter } from "../../helpers/utils";
+import { theme } from "../../theme";
+
 export const Types: React.FC = ({ types, abilities }) => {
   console.log("abilities", abilities);
   console.log("types", types);
 
   return (
-    <View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          backgroundColor: "red",
-        }}
-      >
-        <Text>Types</Text>
-        <Text>Abilities</Text>
+    <View style={{ flexDirection: "row" }}>
+      <View style={{ flex: 1 }}>
+        <Text
+          style={{
+            marginTop: 4,
+            fontWeight: "600",
+            fontSize: 20,
+            color: theme.gray[500],
+          }}
+        >
+          Types
+        </Text>
+        {types.map(({ type }) => (
+          <Text
+            style={{
+              marginTop: 8,
+              fontWeight: "500",
+              fontSize: 16,
+              color: theme.gray[700],
+              padding: 4,
+              backgroundColor: theme.cards.normal.backgroundColor,
+            }}
+          >
+            {capitalizeFirstLetter(type.name)}
+          </Text>
+        ))}
       </View>
-
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View style={{}}>
-          {types.map(({ type }) => (
-            <Text>{type.name}</Text>
-          ))}
-        </View>
-
-        <View style={{}}>
-          {abilities.map(({ ability }) => (
-            <Text>{ability.name}</Text>
-          ))}
-        </View>
+      <View style={{ width: 4 }}></View>
+      <View style={{ flex: 1 }}>
+        <Text
+          style={{
+            marginTop: 4,
+            fontWeight: "600",
+            fontSize: 20,
+            color: theme.gray[500],
+          }}
+        >
+          Abilities
+        </Text>
+        {abilities.map(({ ability }) => (
+          <Text
+            style={{
+              marginTop: 8,
+              fontWeight: "500",
+              fontSize: 16,
+              color: theme.gray[700],
+              backgroundColor: theme.cards.normal.backgroundColor,
+              padding: 4,
+            }}
+          >
+            {capitalizeFirstLetter(ability.name)}
+          </Text>
+        ))}
       </View>
     </View>
   );

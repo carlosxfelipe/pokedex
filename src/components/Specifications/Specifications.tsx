@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, ViewProps } from "react-native";
 
+import { Types } from "../Types/Types";
+
 // import { Container } from './styles';
 
 import Pokeball from "../../assets/images/pokeball.svg";
-import { Types } from "../Types/Types";
 
 interface SpecificationsProps extends ViewProps {
   types: [];

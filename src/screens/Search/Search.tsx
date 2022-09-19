@@ -38,13 +38,13 @@ export const Search: React.FC = ({ navigation }) => {
         saveOnStorage([data]);
       } else {
         if (pokemon.length === MAX_RECENT_SEARCHES) {
-          pokemon.shift();
-          const newArray = [...pokemon, data];
+          pokemon.pop();
+          const newArray = [data, ...pokemon];
           setPokemon(newArray);
           saveOnStorage(newArray);
         } else {
-          setPokemon([...pokemon, data]);
-          saveOnStorage([...pokemon, data]);
+          setPokemon([data, ...pokemon]);
+          saveOnStorage([data, ...pokemon]);
         }
       }
     }
@@ -54,7 +54,6 @@ export const Search: React.FC = ({ navigation }) => {
     // clearStorage();
     const loadPokemons = async () => {
       const pokemons = await getDataFromStorage();
-      console.log("meus pokemons => ", pokemons);
       setPokemon(pokemons);
     };
 
@@ -76,6 +75,7 @@ export const Search: React.FC = ({ navigation }) => {
         <RecentSearchesText>Buscas recentes</RecentSearchesText>
         <FlatList
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 40 }}
           columnWrapperStyle={{ justifyContent: "space-between" }}
           numColumns={2}
           data={pokemon}
@@ -92,7 +92,6 @@ export const Search: React.FC = ({ navigation }) => {
               }
             />
           )}
-          style={{ flex: 1 }}
         />
       </SafeAreaView>
     </Container>
