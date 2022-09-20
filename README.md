@@ -16,6 +16,19 @@ cd pokedex && npm install
 ## Running the application
 Run with expo using `npm run ios` for the iOS version or `npm run android` for the Android version
 
+## Running tests
+I did just a basic test to the evolution button. It tests if the button is clickable.
+
+To run the tests just run the command below:
+```
+npm run test
+```
+
+The result should be something like this:
+
+<img src="https://user-images.githubusercontent.com/85801709/191352189-88033bf4-a7f7-4b70-8517-74a5d58f883a.png" width="500" />
+
+
 ## Screenshots
 <img src="https://user-images.githubusercontent.com/85801709/191345450-b0e0c9dc-dc1c-4c7d-bf23-e04a8b02baf8.png" width="300" />
 <img src="https://user-images.githubusercontent.com/85801709/191345516-7c17d193-d617-4886-bd66-db29ec07f0ad.png" width="300" />
