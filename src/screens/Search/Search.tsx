@@ -24,7 +24,7 @@ const MAX_RECENT_SEARCHES = 6;
 
 export const Search: React.FC = ({ navigation }) => {
   const [search, setSearch] = useState("");
-  const [pokemon, setPokemon] = useState([]);
+  const [recentPokemons, setRecentPokemons] = useState([]);
 
   const getPokemon = async () => {
     const result = await api.get(search.toLocaleLowerCase()).catch(() => {
@@ -33,20 +33,23 @@ export const Search: React.FC = ({ navigation }) => {
 
     if (result && result.data) {
       const data = result.data;
-      if (!pokemon) {
-        setPokemon([data]);
+      if (!recentPokemons) {
+        setRecentPokemons([data]);
         saveOnStorage([data]);
       } else {
-        if (pokemon.length === MAX_RECENT_SEARCHES) {
-          pokemon.pop();
-          const newArray = [data, ...pokemon];
-          setPokemon(newArray);
+        if (recentPokemons.length === MAX_RECENT_SEARCHES) {
+          recentPokemons.pop();
+          const newArray = [data, ...recentPokemons];
+          setRecentPokemons(newArray);
           saveOnStorage(newArray);
         } else {
-          setPokemon([data, ...pokemon]);
-          saveOnStorage([data, ...pokemon]);
+          setRecentPokemons([data, ...recentPokemons]);
+          saveOnStorage([data, ...recentPokemons]);
         }
       }
+      navigation.navigate("Details", {
+        pokemon: data,
+      });
     }
   };
 
@@ -54,7 +57,7 @@ export const Search: React.FC = ({ navigation }) => {
     // clearStorage();
     const loadPokemons = async () => {
       const pokemons = await getDataFromStorage();
-      setPokemon(pokemons);
+      setRecentPokemons(pokemons);
     };
 
     loadPokemons();
@@ -78,10 +81,11 @@ export const Search: React.FC = ({ navigation }) => {
           contentContainerStyle={{ paddingBottom: 40 }}
           columnWrapperStyle={{ justifyContent: "space-between" }}
           numColumns={2}
-          data={pokemon}
+          data={recentPokemons}
           ItemSeparatorComponent={() => <View style={{ height: 40 }} />}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <PokeCard
+              key={index}
               image={item.sprites.other["official-artwork"]["front_default"]}
               name={item.name}
               types={item.types}

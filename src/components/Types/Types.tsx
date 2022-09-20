@@ -7,9 +7,6 @@ import { capitalizeFirstLetter } from "../../helpers/utils";
 import { theme } from "../../theme";
 
 export const Types: React.FC = ({ types, abilities }) => {
-  console.log("abilities", abilities);
-  console.log("types", types);
-
   return (
     <View style={{ flexDirection: "row" }}>
       <View style={{ flex: 1 }}>

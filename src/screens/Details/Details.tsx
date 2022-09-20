@@ -7,6 +7,7 @@ import { EvolutionButton } from "../../components/EvolutionButton/EvolutionButto
 import { Frame } from "../../components/Frame/Frame";
 import { Status } from "../../components/Status/Status";
 import { Specifications } from "../../components/Specifications/Specifications";
+import { Pokename } from "../../components/Pokename/Pokename";
 
 import Background from "../../assets/images/background.svg";
 
@@ -14,7 +15,6 @@ const { width, height } = Dimensions.get("screen");
 
 export const Details: React.FC = ({ route }) => {
   const { pokemon } = route.params;
-  console.log("details => ", pokemon);
   return (
     <Container
       contentContainerStyle={{ backgroundColor: "white" }}
@@ -47,7 +47,16 @@ export const Details: React.FC = ({ route }) => {
             style={{ width: width * 0.8, height: 350 }}
           />
         </View>
-        <Frame number={4} height={5} weight={6} />
+        <Pokename
+          name={pokemon.name}
+          id={pokemon.id}
+          type={pokemon.types[0].type.name}
+        />
+        <Frame
+          number={pokemon.order} // não achei number na API, seria o "order"?
+          height={pokemon.height}
+          weight={pokemon.weight}
+        />
         <Status
           hp={pokemon.stats[0].base_stat}
           attack={pokemon.stats[1].base_stat}

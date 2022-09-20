@@ -1,15 +1,15 @@
 import React from "react";
-import { Pressable } from "react-native";
+import { Pressable, TextInputProps } from "react-native";
 
 import { Container, SearchTextInput, SearchIconView } from "./styles";
 
 import MagnifyingGlass from "../../assets/images/magnifyingglass.svg";
 
-type SearchInputProps = {
+interface SearchInputProps extends TextInputProps {
   onPress: () => void;
   value: string;
   onChangeText: (text: string) => void;
-};
+}
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   onPress,
@@ -22,6 +22,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         placeholder="Pesquisar pelo título ou ID"
         value={value}
         onChangeText={onChangeText}
+        onSubmitEditing={onPress}
       ></SearchTextInput>
       <Pressable
         style={{

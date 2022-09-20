@@ -38,7 +38,8 @@ export const Bar: React.FC<BarProps> = ({ label, value, style, testID }) => {
             height: 8,
             borderRadius: 8,
             backgroundColor: "#FF7D7D",
-            width: `${(value / 200) * 100}%`,
+            width: `${(value / 100) * 100}%`,
+            maxWidth: "100%",
           }}
         />
       </View>

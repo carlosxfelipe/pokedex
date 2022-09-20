@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ViewProps } from "react-native";
+import { ViewProps } from "react-native";
 
 import { Container, Content, BiggerText, SmallerText } from "./styles";
 
