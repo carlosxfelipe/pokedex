@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 
-import { capitalizeFirstLetter } from "../../helpers/utils";
+import { capitalizeFirstLetter, shadow } from "../../helpers/utils";
 
 import NormalType from "../../assets/images/normal.svg";
 import GrassType from "../../assets/images/grass.svg";
@@ -26,45 +26,55 @@ import DragonType from "../../assets/images/dragon.svg";
 
 import { theme } from "../../theme";
 
-export const Pokename: React.FC = ({ name, id, type }) => {
+interface PokenameProps {
+  name: string;
+  id: number;
+  type: string;
+}
+
+export const Pokename: React.FC<PokenameProps> = ({ name, id, type }) => {
   const getTypeIcon = () => {
     switch (type) {
       case "grass":
-        return <GrassType width={60} height={60} />;
+        return <GrassType width={31} height={31} style={{ marginTop: 10 }} />;
       case "fire":
-        return <FireType width={60} height={60} />;
+        return <FireType width={31} height={31} style={{ marginTop: 10 }} />;
       case "water":
-        return <WaterType width={60} height={60} />;
+        return <WaterType width={31} height={31} style={{ marginTop: 10 }} />;
       case "bug":
-        return <BugType width={60} height={60} />;
+        return <BugType width={31} height={31} style={{ marginTop: 10 }} />;
       case "electric":
-        return <ElectricType width={60} height={60} />;
+        return (
+          <ElectricType width={31} height={31} style={{ marginTop: 10 }} />
+        );
       case "ghotst":
-        return <GhostType width={60} height={60} />;
+        return <GhostType width={31} height={31} style={{ marginTop: 10 }} />;
       case "groud":
-        return <GroundType width={60} height={60} />;
+        return <GroundType width={31} height={31} style={{ marginTop: 10 }} />;
       case "ice":
-        return <IceType width={60} height={60} />;
+        return <IceType width={31} height={31} style={{ marginTop: 10 }} />;
       case "fairy":
-        return <FairyType width={60} height={60} />;
+        return <FairyType width={31} height={31} style={{ marginTop: 10 }} />;
       case "flying":
-        return <FlyingType width={60} height={60} />;
+        return <FlyingType width={31} height={31} style={{ marginTop: 10 }} />;
       case "poison":
-        return <PoisonType width={60} height={60} />;
+        return <PoisonType width={31} height={31} style={{ marginTop: 10 }} />;
       case "rock":
-        return <RockType width={60} height={60} />;
+        return <RockType width={31} height={31} style={{ marginTop: 10 }} />;
       case "steel":
-        return <SteelType width={60} height={60} />;
+        return <SteelType width={31} height={31} style={{ marginTop: 10 }} />;
       case "psychic":
-        return <PsychicType width={60} height={60} />;
+        return <PsychicType width={31} height={31} style={{ marginTop: 10 }} />;
       case "fighting":
-        return <FightingType width={60} height={60} />;
+        return (
+          <FightingType width={31} height={31} style={{ marginTop: 10 }} />
+        );
       case "dark":
-        return <DarkType width={60} height={60} />;
+        return <DarkType width={31} height={31} style={{ marginTop: 10 }} />;
       case "dragon":
-        return <DragonType width={60} height={60} />;
+        return <DragonType width={31} height={31} style={{ marginTop: 10 }} />;
       default:
-        return <NormalType width={60} height={60} />;
+        return <NormalType width={31} height={31} style={{ marginTop: 10 }} />;
     }
   };
 
@@ -87,14 +97,26 @@ export const Pokename: React.FC = ({ name, id, type }) => {
             fontWeight: "500",
             fontSize: 18,
             color: theme.gray[600],
-            marginTop: 10,
+            marginTop: 20,
           }}
         >
           ID: {id}
         </Text>
       </View>
 
-      <View>
+      <View
+        style={[
+          {
+            backgroundColor: "white",
+            justifyContent: "center",
+            alignItems: "center",
+            width: 75,
+            height: 75,
+            borderRadius: 8,
+          },
+          shadow,
+        ]}
+      >
         <View
           style={{
             justifyContent: "center",
@@ -106,7 +128,7 @@ export const Pokename: React.FC = ({ name, id, type }) => {
         <Text
           style={{
             fontWeight: "500",
-            fontSize: 18,
+            fontSize: 14,
             color: theme.gray[700],
             marginTop: 3,
           }}

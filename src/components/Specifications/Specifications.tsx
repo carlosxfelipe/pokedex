@@ -3,9 +3,8 @@ import { View, Text, ViewProps } from "react-native";
 
 import { Types } from "../Types/Types";
 
-// import { Container } from './styles';
-
 import Pokeball from "../../assets/images/pokeball.svg";
+import { shadow } from "../../helpers/utils";
 
 interface SpecificationsProps extends ViewProps {
   types: [];
@@ -19,7 +18,18 @@ export const Specifications: React.FC<SpecificationsProps> = ({
   testID,
 }) => {
   return (
-    <View style={{ padding: 16 }}>
+    <View
+      style={[
+        {
+          padding: 16,
+          marginHorizontal: 16,
+          backgroundColor: "white",
+          marginTop: 24,
+          marginBottom: 24,
+        },
+        shadow,
+      ]}
+    >
       <View
         style={{
           flexDirection: "row",

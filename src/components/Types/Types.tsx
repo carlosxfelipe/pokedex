@@ -1,12 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
-
-// import { Container } from './styles';
+import { View, Text, ViewProps } from "react-native";
 
 import { capitalizeFirstLetter } from "../../helpers/utils";
 import { theme } from "../../theme";
 
-export const Types: React.FC = ({ types, abilities }) => {
+interface TypesProps extends ViewProps {
+  types: [];
+  abilities: [];
+}
+
+export const Types: React.FC<TypesProps> = ({ types, abilities }) => {
   return (
     <View style={{ flexDirection: "row" }}>
       <View style={{ flex: 1 }}>

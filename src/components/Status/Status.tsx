@@ -4,6 +4,7 @@ import { View, Text, ViewProps } from "react-native";
 // import { Container } from './styles';
 
 import Pokeball from "../../assets/images/pokeball.svg";
+import { shadow } from "../../helpers/utils";
 import { Bar } from "../Bar/Bar";
 
 interface StatusProps extends ViewProps {
@@ -22,7 +23,17 @@ export const Status: React.FC<StatusProps> = ({
   speed,
 }) => {
   return (
-    <View style={{ padding: 16 }}>
+    <View
+      style={[
+        {
+          padding: 16,
+          marginHorizontal: 16,
+          marginTop: 24,
+          backgroundColor: "white",
+        },
+        shadow,
+      ]}
+    >
       <View
         style={{
           flexDirection: "row",

@@ -1,5 +1,6 @@
 import React from "react";
 import { ViewProps } from "react-native";
+import { shadow } from "../../helpers/utils";
 
 import { Container, Content, BiggerText, SmallerText } from "./styles";
 
@@ -17,7 +18,7 @@ export const Frame: React.FC<FrameProps> = ({
   testID,
 }) => {
   return (
-    <Container style={style} testID={testID}>
+    <Container style={[style, shadow]} testID={testID}>
       <Content>
         <BiggerText>{number}</BiggerText>
         <SmallerText>Number</SmallerText>
