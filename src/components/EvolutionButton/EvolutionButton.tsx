@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, Text, ViewProps } from "react-native";
+import { Pressable, ViewProps } from "react-native";
 
 import { EvolutionButton as Button, EvolutionText } from "./styles";
 
