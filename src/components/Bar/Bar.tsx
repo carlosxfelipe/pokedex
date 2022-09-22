@@ -23,14 +23,16 @@ export const Bar: React.FC<BarProps> = ({ label, value, style, testID }) => {
         style,
       ]}
     >
-      <Text style={{ flex: 1 }}>{label}</Text>
+      <Text style={{ width: 55 }} numberOfLines={1}>
+        {label}
+      </Text>
       <View
         style={{
           marginHorizontal: 8,
           height: 8,
           backgroundColor: "#D9D9D9",
-          width: "70%",
           borderRadius: 8,
+          flex: 1,
         }}
       >
         <View
